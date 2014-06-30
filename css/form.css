@@ -1,0 +1,27 @@
+@CHARSET "UTF-8";
+
+html, body {
+	height:100%;
+}
+
+.input-group {
+	margin-bottom:10px;
+}
+
+.input-group input[type=text],textarea {
+	border-radius:5px !important;
+}
+
+.input-group textarea {
+	width:150% !important;
+	height:200px;
+}
+
+#articles {
+	height:600px;
+	overflow:auto;
+}
+
+p {
+	text-align:justify;
+}

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html ng-app="article">
+<head>
+	<title>Articles in Angularjs</title>
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
+	<link rel="stylesheet" type="text/css" href="css/form.css" />
+	<script type="text/javascript" src="js/angular.js"></script>
+	<script type="text/javascript" src="js/app.js"></script>
+</head>
+<body>
+
+	<section class="container" ng-controller="articleController as publishes">
+		<section class="col-lg-5" ng-show="publishes.edition">
+			<legend>
+				<h3 class="text-success">Create an Article</h3>
+			</legend>
+			<form name="forma" ng-submit="publishes.addArticle()" >
+				<section class="input-group">
+					<input type="text" name="author" class="form-control" placeholder="Author Here" ng-model="publishes.newAuthor" required />
+				</section>
+
+				<section class="input-group">
+					<input type="text" name="title" class="form-control" placeholder="Title Here" ng-model="publishes.newTitle" required />
+				</section>
+
+				<section class="input-group">
+					<textarea name="description" class="form-control" placeholder="Content Here" ng-model="publishes.newDescription" required></textarea>
+				</section>
+
+				<button type="submit" class="btn btn-success" ng-disabled="forma.$invalid">Save</button>
+			</form>
+
+		</section>
+
+		<section class="col-lg-5" ng-show="!publishes.edition">
+			<legend>
+				<h3 class="text-danger">Update an Article</h3>
+			</legend>
+
+			<form name="forma2" ng-submit="publishes.editArticle()" >
+				<section class="input-group">
+					<input type="text" name="author" class="form-control" placeholder="Author Here" ng-model="publishes.toEdit.author"  required />
+				</section>
+
+				<section class="input-group">
+					<input type="text" name="title" class="form-control" placeholder="Title Here" ng-model="publishes.toEdit.title" required />
+				</section>
+
+				<section class="input-group">
+					<textarea name="description" class="form-control" placeholder="Content Here" ng-model="publishes.toEdit.description" required></textarea>
+				</section>
+
+				<button type="submit" class="btn btn-danger">Save</button>
+			</form>
+		</section>
+
+		<section id="articles" class="col-lg-7">
+			<section ng-repeat="article in publishes.articles.slice().reverse()" ng-show="article.show">
+				<h3 class="text-info">{{article.title}}</h3>
+				<h5>by: {{article.author}}</h5>
+				<p>{{article.description}}</p>
+				<p>[<a href="" class="text-danger" ng-click="publishes.edit(article)">Edit</a>] - [<a href="" class="text-danger" ng-click="publishes.deleted(article)">Delete</a>]</p>
+			</section>
+		</section>
+
+	</section>
+</body>
+</html>
